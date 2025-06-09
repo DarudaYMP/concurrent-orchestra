@@ -1,0 +1,9 @@
+// Use SCSS nesting to target the .nav-dot when the .active class is present
+.nav-link {
+  &.active {
+    .nav-dot {
+      // When the link is active, make the dot fully visible
+      opacity: 1;
+    }
+  }
+}

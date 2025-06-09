@@ -1,0 +1,129 @@
+<div class="mx-auto max-w-6xl p-6">
+  <!-- Intro block -->
+  <div class="relative mb-4 rounded-[40px] bg-[#29282B] p-14 text-white">
+  <div class="self-stretch justify-start text-custom-purple text-xl font-medium font-['Rubik'] leading-normal">[ GET IN TOUCH ]</div>
+    <div class="max-w-[950px] justify-start text-[#fbf7fa] text-6xl font-bold font-['Montserrat'] uppercase leading-[86px] my-16">Do you have a question, an idea or a project you need help with?<br/>Contact us. </div>
+
+    <div class="w-[440px] inline-flex justify-start items-start gap-4 flex-wrap content-start">
+      <div data-type="stroke" class="size- px-6 py-4 rounded-3xl outline outline-1 outline-[#fbf7fa] flex justify-center items-center gap-1">
+        <div class="justify-start text-[#fbf7fa] text-base font-medium font-['Montserrat'] leading-tight">coorchestra&#64;gmail.com</div>
+      </div>
+      <div data-type="stroke" class="size- px-6 py-4 rounded-3xl outline outline-1 outline-[#fbf7fa] flex justify-center items-center gap-1">
+        <div class="justify-start text-[#fbf7fa] text-base font-medium font-['Montserrat'] leading-tight">+380964587845</div>
+      </div>
+      <a href="https://www.instagram.com/" >
+      <div data-content="icon" data-size="small" data-state="Default" data-type="primary" class="w-[136px] px-2 py-2.5 rounded-3xl outline outline-1 outline-[#fbf7fa] flex justify-center items-center gap-2">
+        <div class="size-8 relative">
+          <div data-format="Outline" data-weight="Regular" class="size-8 left-0 top-0 absolute">
+            <img src="assets/icons/instagram.svg" alt="Instagram" class="size-8" />
+          </div>
+        </div>
+      </div>
+      </a>
+      <a href="https://www.facebook.com/" >
+      <div data-content="icon" data-size="small" data-state="Default" data-type="primary" class="w-[136px] px-2 py-2.5 rounded-3xl outline outline-1 outline-[#fbf7fa] flex justify-center items-center gap-2">
+        <div class="size-8 relative">
+          <div data-format="Outline" data-weight="Regular" class="size-8 left-0 top-0 absolute">
+            <img src="assets/icons/linkedin.svg" alt="LinkedIn" class="size-8" />
+          </div>
+        </div>
+      </div>
+      </a>
+      <a href="https://www.facebook.com/" >
+      <div data-content="icon" data-size="small" data-state="Default" data-type="primary" class="w-[136px] px-2 py-2.5 rounded-3xl outline outline-1 outline-[#fbf7fa] flex justify-center items-center gap-2">
+        <div class="size-8 relative">
+          <div data-format="Outline" data-weight="Regular" class="size-8 left-0 top-0 absolute">
+            <img src="assets/icons/facebook.svg" alt="Facebook" class="size-8" />
+          </div>
+        </div>
+      </div>
+      </a>
+    </div>
+
+    <!-- Decorative circle -->
+<!-- Parent container positioned where you want it -->
+    <div class="absolute right-6 bottom-6 h-24 w-24">
+
+    <!-- Image 1: The circular text. It fills the parent container. -->
+    <img src="assets/icons/contact-deco.svg" alt="Decorative curved text" class="h-full w-full" />
+
+    <!-- Image 2: The arrow. Positioned absolutely *within the parent* and centered. -->
+    <!-- Adjust h-8 w-8 to change the arrow size as needed -->
+    <img src="assets/icons/arrowdown.svg" alt="Arrow down" class="absolute top-1/2 left-1/2 h-8 w-8 -translate-x-1/2 -translate-y-1/2" />
+    
+    </div>
+  </div>
+
+<!-- CORRECTED Form Layout -->
+<form [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate class="grid grid-cols-1 md:grid-cols-4 gap-4">
+    <!-- Name Input (Row 1, Col 1) -->
+    <div>
+      <input type="text" formControlName="name" placeholder="Name" class="w-full rounded-[40px] bg-[#29282B] p-8 placeholder-custom-yellow focus:ring-2 focus:ring-yellow-300 focus:outline-none" [ngClass]="{ 'border-red-500': submitted && f['name'].invalid }" />
+      <div *ngIf="submitted && f['name'].invalid" class="mt-1 text-sm text-red-500">Name is required.</div>
+    </div>
+
+    <!-- Email Input (Row 1, Col 2) -->
+    <div>
+      <input type="email" formControlName="email" placeholder="Email" class="w-full rounded-[40px] bg-[#29282B] p-8 placeholder-custom-yellow focus:ring-2 focus:ring-yellow-300 focus:outline-none" [ngClass]="{ 'border-red-500': submitted && f['email'].invalid }" />
+      <div *ngIf="submitted && f['email'].errors?.['required']" class="mt-1 text-sm text-red-500">Email is required.</div>
+      <div *ngIf="submitted && f['email'].errors?.['email']" class="mt-1 text-sm text-red-500">Enter a valid email.</div>
+    </div>
+
+    <!-- Subject Input (Row 1, Col 3) -->
+    <div>
+      <input type="text" formControlName="subject" placeholder="Subject" class="w-full rounded-[40px] bg-[#29282B] p-8 placeholder-custom-yellow focus:ring-2 focus:ring-yellow-300 focus:outline-none" [ngClass]="{ 'border-red-500': submitted && f['subject'].invalid }" />
+      <div *ngIf="submitted && f['subject'].invalid" class="mt-1 text-sm text-red-500">Subject is required.</div>
+    </div>
+
+    <!-- Send button (Row 1, Col 4, Spanning 2 Rows) -->
+    <div class="row-span-2">
+      <button type="submit" class="w-64 h-full rounded-[40px] bg-[#F1F1AA] px-6 py-4 font-semibold text-black hover:bg-yellow-400 transition-colors uppercase">
+        <span *ngIf="!isSubmitting">SEND</span>
+        <span *ngIf="isSubmitting" class="animate-pulse">SENDING...</span>
+      </button>
+    </div>
+
+    <!-- Message (Row 2, Spanning 3 Columns) -->
+    <div class="md:col-span-3">
+      <textarea formControlName="message" rows="8" placeholder="Message" class="w-full rounded-[40px] bg-[#29282B] p-8 placeholder-custom-yellow resize-none focus:ring-2 focus:ring-yellow-300 focus:outline-none" [ngClass]="{ 'border-red-500': submitted && f['message'].invalid }"></textarea>
+      <div *ngIf="submitted && f['message'].invalid" class="mt-1 text-sm text-red-500">Message is required.</div>
+    </div>
+</form>
+
+<!-- These message divs remain outside the form -->
+<div *ngIf="successMessage" class="mt-6 text-green-400">{{ successMessage }}</div>
+<div *ngIf="errorMessage" class="mt-6 text-red-500">{{ errorMessage }}</div>
+
+  
+  <!-- FAQ -->
+      <section class="py-12 md:py-24">
+        <div class="text-center">
+          <p class="font-rubik text-sm uppercase tracking-widest text-custom-purple mb-3">[ FAQ ]</p>
+          <h2 class="text-6xl font-extrabold tracking-tight">KEY QUESTIONS</h2>
+          <p class="mt-4 text-gray-400 max-w-md mx-auto">Here we have answered to key questions about us.</p>
+        </div>
+        <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+          <div *ngFor="let faq of faqs" class="bg-[#1C1C1C] rounded-3xl transition-colors duration-300">
+            <div (click)="toggleFaq(faq.id)" class="flex justify-between items-start gap-6 p-10 cursor-pointer">
+              <!-- FIXED: Alignment of number and question -->
+              <div class="flex items-center gap-5">
+                <!-- This container stacks the colon and number vertically -->
+                <div class="font-rubik text-custom-purple text-lg text-center leading-none">
+                  <span class="block mt-1">:{{ faq.id }}</span>
+                </div>
+                <p class="font-bold text-xl leading-snug pt-1">{{ faq.question }}</p>
+              </div>
+              <div class="w-12 h-12 rounded-full border border-gray-500 flex-shrink-0 flex items-center justify-center mt-1">
+                 <!-- FIXED: Swapping between plus and minus icons -->
+                 <svg *ngIf="!faq.isOpen" class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                 <svg *ngIf="faq.isOpen" class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path></svg>
+              </div>
+            </div>
+            <div *ngIf="faq.isOpen" class="px-6 pb-6 text-gray-400 text-sm leading-relaxed animate-fade-in">
+              <p class="pl-12">{{ faq.answer }}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+</div>

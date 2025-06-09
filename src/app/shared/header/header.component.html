@@ -1,0 +1,36 @@
+<nav class="w-full px-4 sm:px-12 py-4 bg-[#030304] flex justify-between items-center">
+  <!-- Logo Section -->
+  <a routerLink="/" class="flex justify-start items-center gap-2.5">
+    <div class="w-10 h-10">
+      <img src="assets/icons/logo.svg" alt="Concurrent Orchestra Logo">
+    </div>
+    <div class="hidden md:block text-neutral-50 text-sm font-medium font-rubik uppercase leading-tight">
+      CONCURENT<br>ORCHESTRA
+    </div>
+  </a>
+
+  <!-- Navigation Links -->
+  <div class="p-1 rounded-full border border-neutral-400/50 hidden lg:flex items-center">
+    <a *ngFor="let link of navLinks"
+       [routerLink]="link.path"
+       routerLinkActive="active"
+       [routerLinkActiveOptions]="{exact: link.path === '/'}"
+       class="nav-link relative px-4 py-2 rounded-full text-neutral-200 hover:text-white transition-colors">
+      
+      <span class="font-medium font-montserrat leading-tight">{{ link.label }}</span>
+      
+      <!-- The active indicator dot -->
+      <div class="nav-dot absolute bottom-1.5 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-custom-purple rounded-full opacity-0 transition-opacity"></div>
+    </a>
+  </div>
+
+  <!-- Auth Buttons -->
+  <div class="flex justify-start items-center">
+    <a routerLink="/signup" class="px-5 py-2.5 rounded-full text-neutral-200 hover:text-white hover:bg-white/10 transition-colors font-medium font-montserrat leading-tight">
+      Sign up
+    </a>
+    <a routerLink="/login" class="px-5 py-2.5 bg-custom-purple rounded-full text-black transition-opacity hover:opacity-90 font-medium font-montserrat leading-tight">
+      Log in
+    </a>
+  </div>
+</nav>

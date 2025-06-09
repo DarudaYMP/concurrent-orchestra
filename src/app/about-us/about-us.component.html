@@ -1,0 +1,118 @@
+<div class="bg-dark-bg text-gray-200 font-montserrat">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <main>
+<!-- ===  HERO SECTION === -->
+      <section class="py-20 lg:py-20">
+
+        <div class="flex flex-col">
+
+          <!-- === Top Item: Title (No changes here) === -->
+          <div class="mb-36">
+            <h1 class="text-6xl md:text-6xl font-extrabold tracking-tight leading-tight">
+              NEXT-GEN<br>
+              <span class="flex items-center gap-4">
+                WEB TECH:
+                <img src="assets/icons/seal.svg" alt="Seal Icon" class="w-14 h-14">
+              </span>
+              WHO WE ARE
+            </h1>
+          </div>
+
+          <!-- 
+            === Bottom Item: "About Us" and "Sync" Sections ===
+            THE KEY FIX: Added `md:ml-32` to indent the container on medium screens and up.
+            This pushes the entire two-column block to the right.
+          -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 max-w-5xl md:ml-32">
+
+            <!-- About Us Block -->
+            <div class="flex-1">
+              <p class="font-rubik text-sm uppercase tracking-widest text-custom-purple mb-3">[ ABOUT US</p>
+              <p class="text-base text-gray-300 leading-relaxed">We are IT-club for the development of high-load web systems, where you'll learn modern technologies on real projects and find like-minded people.]</p>
+            </div>
+            
+            <!-- Sync Block -->
+            <div class="flex-1">
+              <p class="font-rubik text-sm uppercase tracking-widest text-custom-purple mb-3">[ SYNC</p>
+              <p class="text-base text-gray-300 leading-relaxed">Together with mentors and lecturers, we explore, build, and grow through hands-on projects and collaboration.]</p>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Mission Section -->
+      <section class="py-20 my-56 grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-12 items-start">
+        <div class="w-full h-[40rem] flex items-center justify-center">
+            <img src="assets/about-hero.png">
+        </div>
+        <div class="flex flex-col mt-4">
+          <div *ngFor="let section of sections" class="border-b border-gray-800 last:border-b-0 mb-16">
+            <!-- Keep [open] binding, as it will react to changes in our component state -->
+            <details class="group" [open]="section.isOpen">
+              <!-- Add the (click) event here and prevent default browser behavior -->
+              <summary 
+                (click)="toggleSection(section.id, $event)"
+                class="list-none cursor-pointer transition-colors hover:bg-white/5"
+              >
+                <div class="w-full h-px bg-transparent group-open:bg-custom-yellow mb-4"></div>
+                <div class="flex justify-between items-center pr-2">
+                  <div>
+                    <span class="font-rubik text-lg text-custom-purple">[ : {{ section.id }} ]</span>
+                    <h3 class="text-2xl font-bold mt-1">{{ section.title }}</h3>
+                  </div>
+                  <div class="transition-transform duration-300 transform group-open:rotate-180">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                  </div>
+                </div>
+              </summary>
+              <div class="self-stretch justify-start text-[#fbf7fa] text-lg font-normal font-['Montserrat'] leading-relaxed">
+                <p>{{ section.content }}</p>
+                <p *ngIf="section.details" class="mt-6">{{ section.details }}</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- Team Section -->
+      <section class="pb-20">
+        <div class="text-left">
+          <p class="font-rubik text-sm uppercase tracking-widest text-custom-purple mb-4">[ OUR TEAM ]</p>
+          <h2 class="text-5xl md:text-6xl font-extrabold tracking-tight">MEET THE MINDS<br>BEHIND IT-CLUB</h2>
+        </div>
+        <div class="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div *ngFor="let member of teamMembers" class="flex flex-col items-start">
+            <div class="w-full h-[560px] bg-gray-900/70 rounded-3xl mb-6">
+              <img [src]="member.image" alt="{{ member.name }}" class="w-full h-full object-cover rounded-t-3xl">
+            </div>
+            <div class="w-full flex justify-between items-center px-2">
+              <div>
+                <h4 class="text-2xl font-bold">{{ member.name }}</h4>
+                <p class="font-rubik text-gray-400 mt-1 uppercase">[ {{ member.role }}</p>
+              </div>
+              <a [href]="member.linkedinUrl" 
+                  target="_blank" 
+                  rel="noopener noreferrer" class="text-gray-500 hover:text-white transition-colors">
+                <img src="assets/icons/linkedin.svg" alt="LinkedIn" class="w-8 h-8" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- CTA Section -->
+  <div class="bg-light-bg text-black py-24 text-center mt-20 ">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-5xl md:text-6xl font-extrabold tracking-tight ">
+        LET'S BUILD THE<br>FUTURE OF WEB<br>TECH TOGETHER
+      </h2>
+      <button routerLink="/contacts" class="w-64 mt-8 px-10 py-4 bg-black text-white font-semibold rounded-full hover:bg-gray-800 transition-colors">
+        CONTACT US
+      </button>
+    </div>
+  </div>
+</div>

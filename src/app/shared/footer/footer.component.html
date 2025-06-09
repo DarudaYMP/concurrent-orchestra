@@ -1,0 +1,53 @@
+<!-- 
+  The main footer tag is full-width and relative, allowing the cog to be positioned correctly.
+-->
+<footer class="relative bg-[#29282B] rounded-t-[40px] text-white mt-56">
+
+  <!-- 
+    THE KEY: This inner container uses a 2x2 CSS Grid for precise, responsive alignment.
+    - 'grid', 'grid-cols-2' creates the four quadrants.
+    - 'min-h-[18rem]' gives the footer a spacious vertical height.
+    - 'py-12' and 'px' provide the internal padding.
+  -->
+  <div class="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-12 grid grid-cols-2 gap-8">
+    
+    <!-- Grid Area 1: Top-Left (Logo) -->
+    <!-- 'self-start' aligns it to the top of its grid cell. -->
+    <a routerLink="/" class="flex justify-start items-center gap-2.5">
+        <div class="w-10 h-10">
+        <img src="assets/icons/logo.svg" alt="Concurrent Orchestra Logo">
+        </div>
+        <div class="hidden md:block text-neutral-50 text-sm font-medium font-rubik uppercase leading-tight">
+        CONCURENT<br>ORCHESTRA
+        </div>
+    </a>
+
+    <!-- Grid Area 2: Top-Right (Main Nav) -->
+    <!-- 'justify-self-end' pushes it right, 'self-start' pushes it up. -->
+    <nav class="hidden md:flex items-center gap-2 justify-self-end self-start">
+      <a *ngFor="let link of navLinks" [routerLink]="link.path" class="px-4 py-2 hover:bg-white/10 rounded-full transition-colors font-medium font-montserrat">
+        {{ link.label }}
+      </a>
+    </nav>
+    
+    <!-- Grid Area 3: Bottom-Left (Legal Links) -->
+    <!-- 'col-span-1' is explicit. 'self-end' aligns it to the bottom of its grid cell. -->
+    <div class="col-span-1 flex flex-row items-center gap-x-4 gap-y-2 self-end">
+      <a *ngFor="let link of legalLinks" [routerLink]="link.path" class="text-gray-400 hover:text-white transition-colors text-sm font-montserrat">
+        {{ link.label }}
+      </a>
+    </div>
+    
+    <!-- Grid Area 4: Bottom-Right (Social Icons) -->
+    <!-- 'justify-self-end' pushes it right, 'self-end' pushes it down. -->
+    <div class="flex items-center gap-3 justify-self-end self-end">
+      <a *ngFor="let social of socialLinks" [href]="social.href" target="_blank" rel="noopener noreferrer" class="p-3 rounded-full hover:bg-white/10 transition-colors">
+        <img [src]="'assets/icons/' + social.icon" [alt]="social.alt" class="w-7 h-7">
+      </a>
+    </div>
+
+  </div>
+
+  <!-- Decorative Cog Image - Centered and behind the content -->
+    <img src="assets/cog.png" alt="Decorative Cog" class="absolute w-96 bottom-0 left-1/2 -translate-x-1/2 z-0 pointer-events-none" />
+</footer>
